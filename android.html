@@ -28,7 +28,8 @@ ol{margin:0;padding-left:22px}li{margin:8px 0}b.k{color:#0a6fab}
 <h1>안드로이드에 몽당분필 앱 설치하기</h1><p class="sub">몽당분필 회원용</p>
 <div id="inapp" style="display:none" class="card" ><b style="font-size:17px">⚠️ 카카오톡 안에서는 설치가 안 돼요</b><p style="margin:6px 0 0;font-size:14px;color:#66707a">아래 버튼을 눌러 크롬에서 열어 주세요. 버튼이 안 되면 '주소 복사' 후 크롬 주소창에 붙여 넣어 주세요.</p><a class="btn b" href="intent://smiledad-miru.github.io/mongdang-app/android.html#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https%3A%2F%2Fsmiledad-miru.github.io%2Fmongdang-app%2Fandroid.html;end">크롬으로 열기</a><a class="btn o" href="kakaotalk://web/openExternal?url=https%3A%2F%2Fsmiledad-miru.github.io%2Fmongdang-app%2Fandroid.html">다른 브라우저로 열기</a><button class="btn o" id="cpy" style="width:100%">주소 복사</button></div>
 <script>(function(){if(!/KAKAOTALK|NAVER|Instagram|FBAN|FBAV|Line\/|DaumApps|everytimeApp/i.test(navigator.userAgent))return;document.getElementById('inapp').style.display='block';if(/KAKAOTALK/i.test(navigator.userAgent)){setTimeout(function(){location.href='kakaotalk://web/openExternal?url='+encodeURIComponent('https://smiledad-miru.github.io/mongdang-app/android.html');},600);}document.getElementById('cpy').onclick=function(){var u='https://smiledad-miru.github.io/mongdang-app/android.html',t=this;function ok(){t.textContent='복사했어요 ✓';}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(ok,function(){prompt('주소를 길게 눌러 복사하세요',u);});}else{prompt('주소를 길게 눌러 복사하세요',u);}};})();</script>
-<button class="btn b" id="inst" style="display:none;width:100%;border:0">📲 홈 화면에 설치하기</button>
+<button class="btn b" id="inst" style="width:100%;border:0;font-size:18px;padding:16px">📲 홈 화면에 바로 설치하기</button>
+<p id="instMsg" style="display:none;text-align:center;font-size:14px;color:#5a9f43;margin:8px 0 0"></p>
 <div class="card"><ol>
 <li>이 화면을 <b class="k">크롬(Chrome)</b>으로 열어 주세요.<br><span style="color:#66707a;font-size:14px">카톡에서 눌렀다면 보통 자동으로 크롬이 열려요. 안 열리면 위의 '크롬으로 열기'를 눌러요.</span></li>
 <li>오른쪽 위 <b class="k">⋮ 메뉴</b>를 눌러요.</li>
@@ -38,5 +39,41 @@ ol{margin:0;padding-left:22px}li{margin:8px 0}b.k{color:#0a6fab}
 <div class="warn">홈 화면의 아이콘을 누르면 앱이 바로 열려요. 처음 한 번 기수·이름·비밀번호로 로그인하고, 들어가서 내 비밀번호로 바꿔 주세요. 삼성 인터넷도 ≡ 메뉴 → '현재 페이지 추가' → '홈 화면'으로 똑같이 할 수 있어요.</div>
 <a class="btn g" href="app.html">설치 없이 지금 바로 열기</a>
 <p class="muted">아이폰이라면 → <a href="iphone.html">아이폰 설치 안내</a></p>
-<script>var dp;window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;var b=document.getElementById('inst');b.style.display='block';b.onclick=function(){dp.prompt();};});</script>
+<style>
+#ah{position:fixed;inset:0;z-index:50;display:none}#ah .dim{position:absolute;inset:0;background:rgba(0,0,0,.55)}
+#ah .box{position:absolute;left:14px;right:14px;top:96px;background:#fff;border-radius:18px;padding:18px 18px 14px;box-shadow:0 10px 30px rgba(0,0,0,.3);text-align:center}
+#ah .st{font-size:13px;color:#2b7fb8;font-weight:700}#ah .tx{font-size:19px;font-weight:800;margin:6px 0 4px;line-height:1.4}#ah .sm{font-size:14px;color:#7A7468}
+#ah .nav{display:flex;gap:8px;margin-top:14px}#ah .nav a{flex:1;margin:0;padding:12px;font-size:15px}
+#ah .arw{position:absolute;font-size:46px;line-height:1;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.5);animation:abu 1s ease-in-out infinite}
+#ah .arw.t{top:4px;right:10px}#ah .arw.b{bottom:18px;right:24px;animation:abd 1s ease-in-out infinite}#ah.bot .box{top:auto;bottom:110px}
+@keyframes abu{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}@keyframes abd{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+</style>
+<div id="ah"><div class="dim"></div><div class="arw t" id="ahT">⬆︎</div><div class="arw b" id="ahB">⬇︎</div>
+<div class="box"><div class="st" id="ahSt"></div><div class="tx" id="ahTx"></div><div class="sm" id="ahSm"></div>
+<div class="nav"><a class="btn o" href="#" id="ahPrev">이전</a><a class="btn b" href="#" id="ahNext">다음</a></div></div></div>
+<script>(function(){
+var dp=null,ua=navigator.userAgent,b=document.getElementById('inst'),msg=document.getElementById('instMsg'),ov=document.getElementById('ah');
+var inApp=/KAKAOTALK|NAVER|Instagram|FBAN|FBAV|Line\/|DaumApps|everytimeApp/i.test(ua);
+var sam=/SamsungBrowser/i.test(ua),ios=/iPhone|iPad|iPod/.test(ua);
+if(inApp){b.style.display='none';return;}
+if(ios){b.textContent='🍎 아이폰은 여기를 눌러 설치 안내 보기';b.onclick=function(){location.href='iphone.html';};return;}
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;});
+window.addEventListener('appinstalled',function(){msg.style.display='block';msg.textContent='설치됐어요! 홈 화면의 몽당분필 아이콘으로 열어 주세요.';});
+var S=sam?[
+ ['화면 아래의 <b>≡ 메뉴</b>를 누르세요','가로줄 세 개 모양이에요.',1],
+ ['<b>\'현재 페이지 추가\'</b>를 누르세요','안 보이면 메뉴를 옆으로 넘겨 찾아보세요.',0],
+ ['<b>\'홈 화면\'</b>을 고르고 <b>\'추가\'</b>를 누르면 끝!','홈 화면에 몽당분필 아이콘이 생겨요.',0]
+]:[
+ ['오른쪽 위 <b>⋮ 메뉴</b>를 누르세요','점 세 개 모양이에요.',2],
+ ['<b>\'홈 화면에 추가\'</b> 또는 <b>\'앱 설치\'</b>를 누르세요','목록을 내리면 보여요.',0],
+ ['<b>\'설치\'</b>(또는 \'추가\')를 누르면 끝!','홈 화면에 몽당분필 아이콘이 생겨요.',0]
+],i=0;
+function q(x){return document.getElementById(x);}
+function show(n){i=Math.max(0,Math.min(S.length-1,n));q('ahSt').textContent=(i+1)+' / '+S.length+' 단계';q('ahTx').innerHTML=S[i][0];q('ahSm').innerHTML=S[i][1];
+ q('ahT').style.display=S[i][2]===2?'block':'none';q('ahB').style.display=S[i][2]===1?'block':'none';ov.className=S[i][2]===1?'bot':'';
+ q('ahPrev').style.visibility=i?'visible':'hidden';q('ahNext').textContent=i<S.length-1?'다음':'알겠어요';ov.style.display='block';}
+q('ahNext').onclick=function(e){e.preventDefault();if(i<S.length-1)show(i+1);else ov.style.display='none';};
+q('ahPrev').onclick=function(e){e.preventDefault();show(i-1);};ov.querySelector('.dim').onclick=function(){ov.style.display='none';};
+b.onclick=function(){if(dp){dp.prompt();dp.userChoice.then(function(c){if(c.outcome==='accepted'){msg.style.display='block';msg.textContent='설치 중이에요. 잠시 후 홈 화면을 확인해 주세요.';}dp=null;});}else{show(0);}};
+})();</script>
 </div></body></html>
