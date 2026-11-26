@@ -12,7 +12,7 @@
 try{if(sv)localStorage.setItem(K,decodeURIComponent(sv[1]));if(lo)localStorage.removeItem(K);}catch(e){}
 var app=!!sv||lo||/[?&]app=1/.test(q)||window.navigator.standalone===true||(window.matchMedia&&matchMedia('(display-mode: standalone)').matches);
 if(app){var k=null;try{k=localStorage.getItem(K);}catch(e){}
-location.replace('https://script.google.com/macros/s/AKfycbzLD7YevNBIjI_-imcGQsbgu820tQwLZt9r53gs3SmZu4U-r8IVYDIvu3eJ0fWWu9aw/exec');return;}
+location.replace('app.html');return;}
 var inApp=/KAKAOTALK|NAVER|Instagram|FBAN|FBAV|Line\/|DaumApps|everytimeApp/i.test(navigator.userAgent);
 if(!inApp&&history.replaceState){history.replaceState(null,'',location.pathname+'?app=1');}})();</script>
 <style>*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;background:#f5f7f8;color:#1d2329;line-height:1.55}
@@ -80,6 +80,6 @@ else if(safari&&!navigator.standalone){var k='gc_ih';try{if(!sessionStorage.getI
 <li>이름이 '몽당분필'인지 보고 <b class="k">'추가'</b>를 누르면 끝!</li>
 </ol></div>
 <div class="warn">홈 화면의 아이콘을 누르면 앱이 바로 열려요. 처음 한 번 기수·이름·비밀번호로 로그인하고, 들어가서 내 비밀번호로 바꿔 주세요.</div>
-<a class="btn g" href="https://script.google.com/macros/s/AKfycbzLD7YevNBIjI_-imcGQsbgu820tQwLZt9r53gs3SmZu4U-r8IVYDIvu3eJ0fWWu9aw/exec">설치 없이 지금 바로 열기</a>
+<a class="btn g" href="app.html">설치 없이 지금 바로 열기</a>
 <p class="muted">안드로이드폰이라면 → <a href="android.html">안드로이드 설치 안내</a></p>
 </div></body></html>

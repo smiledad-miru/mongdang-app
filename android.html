@@ -12,7 +12,7 @@
 try{if(sv)localStorage.setItem(K,decodeURIComponent(sv[1]));if(lo)localStorage.removeItem(K);}catch(e){}
 var app=!!sv||lo||/[?&]app=1/.test(q)||window.navigator.standalone===true||(window.matchMedia&&matchMedia('(display-mode: standalone)').matches);
 if(app){var k=null;try{k=localStorage.getItem(K);}catch(e){}
-location.replace('https://script.google.com/macros/s/AKfycbzLD7YevNBIjI_-imcGQsbgu820tQwLZt9r53gs3SmZu4U-r8IVYDIvu3eJ0fWWu9aw/exec');return;}
+location.replace('app.html');return;}
 var inApp=/KAKAOTALK|NAVER|Instagram|FBAN|FBAV|Line\/|DaumApps|everytimeApp/i.test(navigator.userAgent);
 if(!inApp&&history.replaceState){history.replaceState(null,'',location.pathname+'?app=1');}})();</script>
 <style>*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;background:#f5f7f8;color:#1d2329;line-height:1.55}
@@ -36,7 +36,7 @@ ol{margin:0;padding-left:22px}li{margin:8px 0}b.k{color:#0a6fab}
 <li><b class="k">'추가'</b> 또는 '설치'를 누르면 끝!</li>
 </ol></div>
 <div class="warn">홈 화면의 아이콘을 누르면 앱이 바로 열려요. 처음 한 번 기수·이름·비밀번호로 로그인하고, 들어가서 내 비밀번호로 바꿔 주세요. 삼성 인터넷도 ≡ 메뉴 → '현재 페이지 추가' → '홈 화면'으로 똑같이 할 수 있어요.</div>
-<a class="btn g" href="https://script.google.com/macros/s/AKfycbzLD7YevNBIjI_-imcGQsbgu820tQwLZt9r53gs3SmZu4U-r8IVYDIvu3eJ0fWWu9aw/exec">설치 없이 지금 바로 열기</a>
+<a class="btn g" href="app.html">설치 없이 지금 바로 열기</a>
 <p class="muted">아이폰이라면 → <a href="iphone.html">아이폰 설치 안내</a></p>
 <script>var dp;window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;var b=document.getElementById('inst');b.style.display='block';b.onclick=function(){dp.prompt();};});</script>
 </div></body></html>
